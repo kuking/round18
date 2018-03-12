@@ -3,7 +3,7 @@ package uk.kukino.round18.console.controller
 import org.scalatest._
 
 
-class InsertoIntoKafkaTest extends FlatSpec {
+class InsertIntoKafkaTest extends FlatSpec {
 
   var underTest = new InsertIntoKafka()
 
@@ -26,6 +26,11 @@ class InsertoIntoKafkaTest extends FlatSpec {
 
   it should "include the quantity in the result" in {
     assert(underTest.handleInsert(123).inserted == 123)
+  }
+
+  it should "accuse zero inserts when invalid/failed value" in {
+    val r = underTest.handleInsert(-1)
+    assert(!r.success && r.inserted == 0)
   }
 
 }
