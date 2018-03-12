@@ -10,6 +10,7 @@ organizationHomepage := Some(url("https://kukino.uk"))
 
 libraryDependencies += "org.springframework.boot" % "spring-boot-starter-web" % "2.0.0.RELEASE"
 libraryDependencies += "org.springframework.boot" % "spring-boot-configuration-processor" % "2.0.0.RELEASE"
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.8.0"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 
