@@ -1,13 +1,13 @@
 package uk.kukino.round18.console.controller
 
-
 import com.typesafe.scalalogging.Logger
 import org.springframework.web.bind.annotation.{RequestMapping, RequestMethod, RequestParam, RestController}
+import uk.kukino.round18.console.service.KafkaService
 
 import scala.beans.BeanProperty
 
 @RestController
-class InsertIntoKafka {
+class InsertIntoKafka (kafkaService : KafkaService) {
 
   private val logger = Logger[InsertIntoKafka]
 
@@ -17,6 +17,7 @@ class InsertIntoKafka {
       logger.error(s"handleInsert requested with invalid size ($quantity)")
       new Result(false, 0)
     } else {
+      kafkaService.sendRandomMessages(quantity)
       logger.info(s"handleInsert successfully inserted ($quantity)")
       new Result(true, quantity)
     }

@@ -1,11 +1,14 @@
 package uk.kukino.round18.console.controller
 
-import org.scalatest._
+import org.scalamock.scalatest.MockFactory
+import org.scalatest.FlatSpec
+import uk.kukino.round18.console.service.KafkaService
 
 
-class InsertIntoKafkaTest extends FlatSpec {
+class InsertIntoKafkaTest extends FlatSpec with MockFactory {
 
-  var underTest = new InsertIntoKafka()
+  var KafkaServiceMock = mock[KafkaService]
+  var underTest = new InsertIntoKafka(KafkaServiceMock)
 
   it should "not succeed when negative amount" in {
     assert(!underTest.handleInsert(-100).success)
@@ -20,11 +23,14 @@ class InsertIntoKafkaTest extends FlatSpec {
   }
 
   it should "succeed on quantity within range" in {
+    (KafkaServiceMock.sendRandomMessages _).expects(100)
+    (KafkaServiceMock.sendRandomMessages _).expects(200)
     assert(underTest.handleInsert(100).success)
     assert(underTest.handleInsert(200).success)
   }
 
   it should "include the quantity in the result" in {
+    (KafkaServiceMock.sendRandomMessages _).expects(123)
     assert(underTest.handleInsert(123).inserted == 123)
   }
 
