@@ -17,6 +17,7 @@ class KafkaService {
   val topic = "test" //xxx: configure
   @BeanProperty var kafkaEndpoint : Properties = null
   var kafkaProducer : KafkaProducer[String, String] = null
+  val rnd = new Random()
 
   @PostConstruct
   def createProducer(): Unit = {
@@ -24,7 +25,6 @@ class KafkaService {
   }
 
   def sendRandomMessages(qty : Int) : Unit = {
-    val rnd = new Random()
     for ( i <- 1 to qty) {
       val data = new ProducerRecord[String, String](topic, s"$i:${rnd.nextInt()}")
       kafkaProducer.send(data)
