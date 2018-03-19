@@ -1,5 +1,7 @@
 scalaVersion := "2.12.4"
 
+enablePlugins(JavaServerAppPackaging)
+enablePlugins(DockerPlugin)
 
 organization := "uk.kukino"
 name := "round18Console"
@@ -18,4 +20,4 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 
 mainClass in Compile := Some("uk.kukino.round18.console.ConsoleApplication")
 
-
+dockerExposedPorts := Seq(8080)
