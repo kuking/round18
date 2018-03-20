@@ -1,6 +1,7 @@
-kafka-endpoint:
+kafka-producer-endpoint:
   bootstrap.servers: 192.168.99.100:9092
   client.id: round18Console
   key.serializer: org.apache.kafka.common.serialization.StringSerializer
   value.serializer: org.apache.kafka.common.serialization.StringSerializer
+
 

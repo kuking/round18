@@ -15,13 +15,13 @@ import scala.util.Random
 class KafkaService {
 
   val topic = "test" //xxx: configure
-  @BeanProperty var kafkaEndpoint : Properties = null
+  @BeanProperty var kafkaProducerEndpoint : Properties = null
   var kafkaProducer : KafkaProducer[String, String] = null
   val rnd = new Random()
 
   @PostConstruct
   def createProducer(): Unit = {
-    kafkaProducer = new KafkaProducer[String, String](kafkaEndpoint)
+    kafkaProducer = new KafkaProducer[String, String](kafkaProducerEndpoint)
   }
 
   def sendRandomMessages(qty : Int) : Unit = {
