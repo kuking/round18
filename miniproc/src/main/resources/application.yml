@@ -8,7 +8,6 @@ kafka-producer-endpoint:
 kafka-consumer-endpoint:
   bootstrap.servers: 192.168.99.100:9092
   client.id: round18MiniProc
-  position: 0
   key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
   value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
-  group.id: test-consumer-group
+  group.id: round18MiniProc.group
